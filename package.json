@@ -1,0 +1,35 @@
+{
+  "name": "@infinityxone/gateway",
+  "version": "1.0.0",
+  "description": "Comprehensive gateway system for the Infinity X One platform",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node examples/basic.js",
+    "dev": "node --watch examples/basic.js",
+    "test": "echo \"No tests specified yet\" && exit 0",
+    "lint": "echo \"No linter configured yet\" && exit 0"
+  },
+  "keywords": [
+    "gateway",
+    "api-gateway",
+    "microservices",
+    "load-balancer",
+    "circuit-breaker",
+    "rate-limiting",
+    "authentication",
+    "service-discovery"
+  ],
+  "author": "Infinity X One Systems",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/InfinityXOneSystems/gateway.git"
+  },
+  "bugs": {
+    "url": "https://github.com/InfinityXOneSystems/gateway/issues"
+  },
+  "homepage": "https://github.com/InfinityXOneSystems/gateway#readme"
+}
