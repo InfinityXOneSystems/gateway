@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  gateway:
+    build: .
+    container_name: infinity-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - GATEWAY_PORT=8080
+      - GATEWAY_HOST=0.0.0.0
+      - JWT_SECRET=${JWT_SECRET:-change-this-secret-in-production}
+      - LOG_LEVEL=info
+      - LOG_FORMAT=json
+    volumes:
+      - ./config:/usr/src/app/config:ro
+      - ./logs:/usr/src/app/logs
+    networks:
+      - infinity-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8080/health', (r) => { process.exit(r.statusCode === 200 ? 0 : 1); }).on('error', () => process.exit(1));"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  infinity-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
