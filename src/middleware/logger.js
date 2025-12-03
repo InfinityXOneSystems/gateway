@@ -204,7 +204,6 @@ class Logger {
   _getClientIp(req) {
     return req.headers['x-forwarded-for']?.split(',')[0] ||
            req.headers['x-real-ip'] ||
-           req.connection?.remoteAddress ||
            req.socket?.remoteAddress ||
            'unknown';
   }
@@ -214,7 +213,7 @@ class Logger {
    * @private
    */
   _generateId() {
-    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
   }
 }
 

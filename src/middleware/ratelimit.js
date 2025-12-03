@@ -102,8 +102,8 @@ class RateLimiter {
    */
   _defaultKeyGenerator(req) {
     return req.headers['x-forwarded-for'] || 
-           req.connection.remoteAddress || 
-           req.socket.remoteAddress;
+           req.socket?.remoteAddress ||
+           'unknown';
   }
 
   /**
