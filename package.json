@@ -1,0 +1,56 @@
+{
+  "name": "@infinityxonesystems/omni-gateway",
+  "version": "1.0.0",
+  "description": "Omni Gateway - Cloud Run ready gateway with ChatGPT Actions support",
+  "main": "dist/server/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "tsx watch src/server/index.ts",
+    "start": "node dist/server/index.js",
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\" \"tests/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\" \"tests/**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "keywords": [
+    "gateway",
+    "omni",
+    "twilio",
+    "chatgpt",
+    "cloud-run"
+  ],
+  "author": "InfinityXOne Systems",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ajv": "^8.12.0",
+    "axios": "^1.6.2",
+    "twilio": "^4.20.0",
+    "js-yaml": "^4.1.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "@types/js-yaml": "^4.0.9",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.1",
+    "ts-jest": "^29.1.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  }
+}
