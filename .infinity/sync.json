@@ -1,0 +1,6 @@
+﻿{
+  "authority": "infinity-xos",
+  "sync_credential": "infinity-xos-sync-sa",
+  "access": "read-only",
+  "required": true
+}

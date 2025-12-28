@@ -181,9 +181,9 @@ async function startServer() {
 
     // Start server
     app.listen(config.port, () => {
-      console.log(`✓ Omni Gateway listening on port ${config.port}`);
-      console.log(`✓ Health check: http://localhost:${config.port}/healthz`);
-      console.log(`✓ Ready check: http://localhost:${config.port}/readyz`);
+      console.log(`âœ“ Omni Gateway listening on port ${config.port}`);
+      console.log(`âœ“ Health check: http://localhost:${config.port}/healthz`);
+      console.log(`âœ“ Ready check: http://localhost:${config.port}/readyz`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);

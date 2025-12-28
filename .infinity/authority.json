@@ -1,0 +1,6 @@
+﻿{
+  "authority": "infinity-xos",
+  "runtime_identity": "infinity-x-one-systems@appspot.gserviceaccount.com",
+  "secret": "workspace-sa-json",
+  "required": true
+}
