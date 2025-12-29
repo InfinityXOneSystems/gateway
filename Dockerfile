@@ -1,52 +1,33 @@
-# Multi-stage Dockerfile for Cloud Run
+FROM node:18-alpine
 
-# Stage 1: Build
-FROM node:20-alpine AS builder
-
-WORKDIR /app
+# Set working directory
+WORKDIR /usr/src/app
 
 # Copy package files
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production && \
-    npm ci --only=development
+RUN npm ci --only=production && npm cache clean --force
 
-# Copy source code
-COPY tsconfig.json ./
-COPY src ./src
-
-# Build TypeScript
-RUN npm run build
-
-# Stage 2: Production
-FROM node:20-alpine AS production
+# Copy application files
+COPY src/ ./src/
+COPY examples/ ./examples/
+COPY config/ ./config/ 2>/dev/null || true
 
 # Create non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install only production dependencies
-RUN npm ci --only=production && \
-    npm cache clean --force
-
-# Copy built application from builder
-COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
+RUN addgroup -g 1001 -S gateway && \
+    adduser -u 1001 -S gateway -G gateway && \
+    chown -R gateway:gateway /usr/src/app
 
 # Switch to non-root user
-USER nodejs
+USER gateway
 
-# Expose port (Cloud Run will set PORT env var)
+# Expose port
 EXPOSE 8080
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:8080/healthz', (r) => {if (r.statusCode !== 200) throw new Error('Health check failed')})"
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:8080/health', (r) => { process.exit(r.statusCode === 200 ? 0 : 1); }).on('error', () => process.exit(1));"
 
-# Start server
-CMD ["node", "dist/server/index.js"]
+# Start gateway
+CMD ["node", "examples/basic.js"]
