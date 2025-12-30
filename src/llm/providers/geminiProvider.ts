@@ -20,7 +20,7 @@ export class GeminiProvider implements LLMProvider {
     // Stub response (wrapped in Promise to satisfy async)
     return Promise.resolve({
       content: `Gemini stub response for: ${prompt.substring(0, 50)}...`,
-      model: 'gemini-pro',
+      model: 'gemini-2.5-flash',
       usage: {
         promptTokens: 10,
         completionTokens: 20,
