@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Comprehensive gateway system for the Infinity X One platform",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "start": "node examples/basic.js",
     "dev": "node --watch examples/basic.js",
     "test": "echo \"No tests specified yet\" && exit 0",
-    "lint": "echo \"No linter configured yet\" && exit 0"
+    "lint": "eslint \"./src/**/*.ts\" --fix"
   },
   "keywords": [
     "gateway",
@@ -31,5 +32,14 @@
   "bugs": {
     "url": "https://github.com/InfinityXOneSystems/gateway/issues"
   },
-  "homepage": "https://github.com/InfinityXOneSystems/gateway#readme"
+  "homepage": "https://github.com/InfinityXOneSystems/gateway#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.52.0",
+    "@typescript-eslint/parser": "^8.52.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.4",
+    "typescript-eslint": "^8.52.0"
+  }
 }
